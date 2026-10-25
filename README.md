@@ -30,6 +30,8 @@ uv run pytest -q
 uv run python -m app.ask "LoRAとは何ですか？"
 ```
 
+質問に回答した後は、同じ起動中に追加の質問を続けられます。入力が一定量を超えると履歴を自動要約して引き継ぎます。空行または `exit` で終了します。
+
 詳しい手順は [lectures/01/problem.md](lectures/01/problem.md) を見てください。
 
 ## 構成
