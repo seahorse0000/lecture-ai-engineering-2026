@@ -11,7 +11,13 @@ from pydantic_ai import DeferredToolRequests
 from pydantic_ai.messages import ToolCallPart, ToolReturnPart
 from pydantic_ai.models.test import TestModel
 
-from app.agent import agent
+from app.agent import (
+    FULL_CONTEXT_INSTRUCTIONS,
+    GRAPH_INSTRUCTIONS,
+    INSTRUCTIONS,
+    TREE_INSTRUCTIONS,
+    agent,
+)
 
 BASE_TOOLS = {"search_materials"}
 
@@ -46,3 +52,10 @@ def test_material_result_reaches_the_model(monkeypatch):
     returns = _parts(result, ToolReturnPart)
     assert returns and returns[0].tool_name == "search_materials"
     assert json.loads(returns[0].content)["results"] == [hit]
+
+
+def test_all_answer_modes_include_the_shared_closing_sections():
+    headings = ("共通点", "違い", "復習のヒント")
+    for instructions in (INSTRUCTIONS, TREE_INSTRUCTIONS, GRAPH_INSTRUCTIONS, FULL_CONTEXT_INSTRUCTIONS):
+        positions = [instructions.index(heading) for heading in headings]
+        assert positions == sorted(positions)
