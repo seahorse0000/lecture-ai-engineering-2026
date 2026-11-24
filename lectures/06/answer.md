@@ -16,6 +16,6 @@
 <!-- 基礎・実装・発展のどれか1つに取り組めば完了です。 -->
 
 - 取り組んだレベル：基礎
-- やったこと：
-- 結果：
-- 気づき・疑問：
+- やったこと：app/mcp_server.py に server.tool()(tools.get_lecture_summary) を1行書き足した。
+- 結果：list-tools でツールが7個から8個になり、glossary_get_lecture_summary が増えた。「第2回では何を学びますか？」と聞くと glossary_get_lecture_summary({'lecture': 2}) が呼ばれ、第2回（ファインチューニングとLoRA）の内容を答えた。
+- 気づき・疑問：サーバー側に1行足すだけで、エージェントを変えなくても新しいツールが使えた。
